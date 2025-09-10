@@ -37,7 +37,6 @@ function Weather() {
         const forecastData = await fetchForecast(city);
         setForecast(forecastData);
       }
-
     } catch (e) {
       console.error("An error occurred:", e);
       setError(true);
@@ -134,62 +133,63 @@ function Weather() {
 
   return (
     <div
-      className=" bg-cover bg-center
-        box-border max-h-vh ]"
+      className=" bg-cover bg-center box-border max-h-dvh"
       style={{ backgroundImage: "url('/bg-weather.png') " }}
     >
-      {/* <div className="h-full absolute w-full bg-cyan-200/30 backdrop-blur-xl "></div> */}
       <div
         className={`${
-          loading || weatherData?.cod !== 200 ? "h-screen z-20 w-screen" : ""
-        } bg-gradient-to-b from-[#64AFC9]/20 to-[#3377A0] backdrop-blur-lg p-4 md:p-8`}
+          loading || weatherData?.cod !== 200 ? "h-dvh z-20 w-full" : ""
+        } bg-gradient-to-b from-[#64AFC9]/20 to-[#3377A0] h-dvh backdrop-blur-lg p-4 md:p-8`}
       >
         <Search
           search={search}
           setSearch={setSearch}
           handleSearch={handleSearch}
+          loading={loading}
+          weatherData={weatherData}
         />
         {/* Error message */}
         {error && (
-          <div className="w-full mt-10 bg-red-400 text-xl text-white p-5 mb-4 rounded-md">
+          <div className="w-full mt-10 bg-red-400 text-xl text-center text-white p-5 mb-4 rounded-md">
             {error}
           </div>
         )}
 
         {loading ? (
-          <div className="w-full bg-[#64AFC9] rounded-full mt-10 text-xl text-black p-5">
-            {loadingText}
+          <div className="w-full flex flex-col justify-center items-center h-full">
+            <div className="w-20 h-20 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+            <div className="text-white/60 font-bold">{loadingText}</div>
           </div>
         ) : weatherData ? (
-          <div className=" main  m-auto flex flex-col items-center justify-between gap-1 ">
-            <div className="mt-4 w-[100px] h-full flex items-center justify-center">
+          <div className=" main m-auto flex flex-col items-center justify-between gap-1 ">
+            <div className="mt-4 z-50  w-[100px] h-full flex items-center justify-center">
               {weatherImage(description)}
             </div>
 
-            <div className="flex flex-col justify-center items-center">
+            <div className="flex z-50  flex-col justify-center items-center">
               <div className="text-4xl md:text-6xl font-bold text text-black/80">{`${weatherData?.main?.temp} °C`}</div>
               <div className="text-lg font-bold">
                 {weatherData?.name}
                 {`${weatherData?.sys?.country ? "," : ""}`}{" "}
                 <span>{weatherData?.sys.country}</span>
               </div>
-              <div className="text-lg md:text-xl font-bold text-black/50">
+              <div className="text-lg md:text-xl font-bold text-black/70">
                 {getCurrentDate()}
               </div>
-              <h2 className="text-lg font-thin  capitalize">
+              <h2 className="text-lg z-50  font-thin  capitalize">
                 {weatherData?.weather[0]?.description}
               </h2>
             </div>
 
-            <div className="flex justify-between w-full px-8 md:px-20">
-              <div>
-                <h1 className="text-lg font-bold">
+            <div className="flex justify-between w-full px-8 md:px-20 z-50">
+              <div className="bg-orange-100/20 rounded-xl py-2 px-10">
+                <h1 className="text-lg font-bold ">
                   {weatherData?.main?.humidity + "%"}
                 </h1>
                 <p>Humidity</p>
               </div>
               <h1 className="text-4xl text-black/10 font-bold">|</h1>
-              <div>
+              <div className="bg-orange-100/20 rounded-xl py-2 px-10  ">
                 <h1 className="text-lg font-bold">
                   {weatherData?.wind?.speed} km/h
                 </h1>
@@ -200,7 +200,7 @@ function Weather() {
               {forecast.map((day, index) => (
                 <div
                   key={index}
-                  className="flex flex-col md:flex-row justify-center md:gap-5 items-center bg-white/15 shadow-2xl md:bg-white/40 p-2 rounded-xl"
+                  className="flex z-60 flex-col md:flex-row justify-center md:gap-5 items-center bg-white/15 shadow-2xl md:bg-white/40 p-2 rounded-xl"
                 >
                   <div className="font-bold text-black/60 md:text-black/40">
                     {day.date}
