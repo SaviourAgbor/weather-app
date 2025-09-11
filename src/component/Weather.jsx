@@ -133,13 +133,13 @@ function Weather() {
 
   return (
     <div
-      className=" bg-cover bg-center box-border max-h-dvh"
+      className=" bg-cover bg-center box-border min-h-dvh"
       style={{ backgroundImage: "url('/bg-weather.png') " }}
     >
       <div
         className={`${
           loading || weatherData?.cod !== 200 ? "h-dvh z-20 w-full" : ""
-        } bg-gradient-to-b from-[#64AFC9]/20 to-[#3377A0] h-dvh backdrop-blur-lg p-4 md:p-8`}
+        } bg-gradient-to-b from-[#64AFC9]/20 to-[#3377A0] min-h-[100dvh] backdrop-blur-lg p-4 md:p-8`}
       >
         <Search
           search={search}
@@ -161,12 +161,11 @@ function Weather() {
             <div className="text-white/60 font-bold">{loadingText}</div>
           </div>
         ) : weatherData ? (
-          <div className=" main m-auto flex flex-col items-center justify-between gap-1 ">
-            <div className="mt-4 z-50  w-[100px] h-full flex items-center justify-center">
-              {weatherImage(description)}
-            </div>
-
-            <div className="flex z-50  flex-col justify-center items-center">
+          <div className=" main m-auto flex flex-col items-center justify-between gap-2 ">
+            <div className="flex z-50 pb-2 flex-col justify-center items-center w-full  top-10 shadow-[0_0_30px_10px_rgba(0,0,0,0.3)] rounded-b-xl bg-white/10 ">
+              <div className="mt-4 z-50  w-[100px] h-full flex items-center justify-center">
+                {weatherImage(description)}
+              </div>
               <div className="text-4xl md:text-6xl font-bold text text-black/80">{`${weatherData?.main?.temp} °C`}</div>
               <div className="text-lg font-bold">
                 {weatherData?.name}
@@ -181,15 +180,14 @@ function Weather() {
               </h2>
             </div>
 
-            <div className="flex justify-between w-full px-8 md:px-20 z-50">
-              <div className="bg-orange-100/20 rounded-xl py-2 px-10">
+            <div className="flex justify-between w-full px-5 md:px-20 z-50">
+              <div className="bg-orange-100/20 rounded-xl py-2 px-5">
                 <h1 className="text-lg font-bold ">
                   {weatherData?.main?.humidity + "%"}
                 </h1>
                 <p>Humidity</p>
               </div>
-              <h1 className="text-4xl text-black/10 font-bold">|</h1>
-              <div className="bg-orange-100/20 rounded-xl py-2 px-10  ">
+              <div className="bg-orange-100/20 rounded-xl py-2 px-2 z-50 md:px-10  ">
                 <h1 className="text-lg font-bold">
                   {weatherData?.wind?.speed} km/h
                 </h1>
@@ -210,8 +208,8 @@ function Weather() {
                     alt={day.description}
                     className="w-12 h-12"
                   />
-                  <div className="font-bold">{day.temp}°C</div>
-                  <div className=" capitalize font-thin md:font-light">
+                  <div className="font-bold text-xl">{day.temp}°C</div>
+                  <div className=" capitalize font-bold text-black/60 md:font-light">
                     {day.description}
                   </div>
                 </div>

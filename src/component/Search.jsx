@@ -9,15 +9,14 @@ function Search({ search, setSearch, handleSearch, loading, weatherData }) {
 
   return (
     <div className={`${loading ? 'hidden' : 'h-[50px] w-full flex gap-2 items-center justify-around'}`}>
-      <div
+      {/* <div
         className={`${
           loading || weatherData?.cod !== 200
             ? "hidden"
-            : "h-[99dvh] w-[90dvw]  shadow-[0_0_30px_10px_rgba(2,0,0,0.3)] rounded-b-xl z-10 bg-white/10 absolute left-0"}`}></div>
+            : "h-[60dvh] w-[100dvh]  md:block md:w-[40dvw] top-10  shadow-[0_0_30px_10px_rgba(2,0,0,0.3)] rounded-b-xl z-10 bg-white/10 absolute mx-autoo"}`}></div> */}
       <div className={`${
-          loading || weatherData?.cod !== 200 ? 'hidden' : "h-[30dvh] w-[50dvw] animate-pulse z-20 shadow-[0_0_30px_10px_rgba(0,0,0,0.3)] rounded-b-full bg-white/10 absolute left-0"}`}></div>
-      <div className={`${
-          loading || weatherData?.cod !== 200 ? 'hidden' : "h-[30dvh] w-[50dvw] animate-pulse z-20 shadow-[0_0_30px_10px_rgba(0,0,0,0.3)] rounded-b-full bg-white/10 absolute right-0"}`}></div>
+          loading || weatherData?.cod !== 200 ? 'hidden' : "h-[0dvh] w-[50dvw] animate-pulse z-20 shadow-[0_0_30px_10px_rgba(0,0,0,0.3)] rounded-b-full bg-white/10 absolute left-0"}`}></div>
+      
 
       <input
         type="text"
@@ -26,7 +25,7 @@ function Search({ search, setSearch, handleSearch, loading, weatherData }) {
         onChange={(event) => setSearch(event.target.value)}
         onKeyDown={handleKeyPress}
         name="search"
-        className="w-full outline-none shadow-[0_0_8px_1px_rgba(0,0,0,0.3)] z-50 bg-white h-full rounded-xl p-4 text-xl font-bold text-black"
+        className="w-full outline-none z-90 shadow-[0_0_8px_1px_rgba(0,0,0,0.3)]  bg-white h-full rounded-xl p-4 text-xl font-bold text-black"
       />
       <button
         onClick={handleSearch}
